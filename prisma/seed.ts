@@ -9,7 +9,6 @@ async function main() {
     create: {
       email: "alice@prisma.io",
       name: "Alice",
-      password: "password123",
     },
   });
 
