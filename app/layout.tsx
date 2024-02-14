@@ -1,9 +1,5 @@
 import "./globals.css";
-
-export const metadata = {
-  title: "My App",
-  description: "My app description",
-};
+import Header from "./components/layout/Header";
 
 export default function RootLayout({
   children,
@@ -11,8 +7,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
+    <>
+      <Header />
+      <main>{children}</main>
+    </>
   );
 }
