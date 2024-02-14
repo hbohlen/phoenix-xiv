@@ -3,10 +3,8 @@
 import NextAuth, { Session, User } from "next-auth";
 import { NextApiRequest, NextApiResponse } from "next";
 import DiscordProvider from "next-auth/providers/discord";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../../lib/prisma";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-
-const prisma = new PrismaClient();
 
 export default NextAuth({
   adapter: PrismaAdapter(prisma),
