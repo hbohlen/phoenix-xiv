@@ -1,14 +1,25 @@
-// pages/api/someApiRoute.ts
+// pages/api/user.ts
 
+import { PrismaClient } from "@prisma/client";
 import { getSession } from "next-auth/react";
-import { NextApiRequest, NextApiResponse } from "next";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const prisma = new PrismaClient();
+
+export default async function handle(req, res) {
   const session = await getSession({ req });
 
-  if (session && session.user) {
-    res.status(200).json({ discordId: (session.user as { id: string }).id });
+  if (session) {
+    const user = await prisma.user.findUnique({
+      where: {
+        email: session.user.email,
+      },
+      select: {
+        availability: true,
+      },
+    });
+
+    res.json(user);
   } else {
-    res.status(401).json({ error: "Not authenticated" });
+    res.status(401).send("Unauthorized");
   }
-};
+}
