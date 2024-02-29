@@ -1,20 +1,11 @@
-// pages/index.tsx
+import React from "react";
 
-import { useSession, signIn, signOut } from "next-auth/react";
-
-export default function Home() {
-  const { data: session } = useSession();
-
+function HomePage() {
   return (
     <div>
-      {session ? (
-        <div>
-          <pre>{JSON.stringify(session.user, null, 2)}</pre>
-          <button onClick={() => signOut()}>Sign out</button>
-        </div>
-      ) : (
-        <button onClick={() => signIn("discord")}>Sign in with Discord</button>
-      )}
+      <h1>Home Page</h1>
     </div>
   );
 }
+
+export default HomePage;
